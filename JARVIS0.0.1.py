@@ -1,6 +1,7 @@
 from datetime import datetime
 import pyttsx3  #文本转语音第三方库
 import requests
+import random
 
 # 定义计算器函数
 def calculator(expression=None):
@@ -69,6 +70,37 @@ def tell_time():
 def check_weather():
     print("天气模块开发中...")
 
+# 定义表情函数
+def emotion_mode():
+    #颜文字字典
+    emoticon_dict = {
+        "开心": ['(´∀｀*)', '(๑´ڡ`๑)', '٩(◕‿◕｡)۶'],
+        "伤心": ['(;_;)', '(Ｔ▽Ｔ)'],
+        "震惊": ['Σ(°△°|||)︴', '(⊙ˍ⊙)']
+    }
+    #新增疑惑表情
+    confused_emotion = "没有这个表情(￣.￣)?"
+    #用户输入完整句子
+    shuru = input("表情模块启动！\n请输入想获得的表情")
+
+    #检查句子中包含哪些情绪词
+    found_emotion = None #先设置为没找到
+    for emotion in emoticon_dict:
+        if emotion in shuru:
+            found_emotion = emotion
+            break
+
+    #根据是否找到情绪词来返回表情
+    if found_emotion:
+        emoticons = emoticon_dict[found_emotion]
+        selected_emotion = random.choice(emoticons)
+        print(selected_emotion)
+    else:
+        print(confused_emotion)
+
+
+
+
 
 # 主程序
 print("您好！我是您的python管家。")
@@ -87,6 +119,8 @@ while True:
             calculator(user_input)
     elif "时间" in user_input:
         tell_time()
+    elif "表情" in user_input:
+        emotion_mode()
     elif "退出" in user_input or "再见" in user_input or "结束" in user_input:
         print("再见，主人！")
         break
