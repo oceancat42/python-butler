@@ -80,21 +80,23 @@ def emotion_mode():
     }
     #新增疑惑表情
     confused_emotion = "没有这个表情(￣.￣)?"
-    #用户输入完整句子
-    shuru = input("表情模块启动！\n请输入想获得的表情")
+    while True:
+        shuru = input("请输入想要的表情:")
 
+        if shuru == "退出":
+            print("再见！")
+            break
 
-    found_emotion = None
-    found = []  # 创建一个空列表，用来存放找到的所有情绪词
-    for emotion in emoticon_dict:  # 遍历字典里每一个情绪词
-        if emotion in shuru:  # 检查当前的词是否在用户的输入中
-            found.append(emotion)  # 如果找到了，就把他放到found列表里
+        found = []  # 创建一个空列表，用来存放找到的所有情绪词
+        for emotion in emoticon_dict:  # 遍历字典里每一个情绪词
+            if emotion in shuru:  # 检查当前的词是否在用户的输入中
+                found.append(emotion)  # 如果找到了，就把他放到found列表里
 
-    if found:  # 判断是否找到了情绪词，#如果found列表不为空
-        for em in found:  # 遍历found列表中每一个情绪词
-            print(random.choice(emoticon_dict[em]))
-    else:
-        print(confused_emotion)
+        if found:  # 判断是否找到了情绪词，#如果found列表不为空
+            for em in found:  # 遍历found列表中每一个情绪词
+                print(random.choice(emoticon_dict[em]))
+        else:
+            print(confused_emotion)
 
 
 # 主程序
